@@ -11,17 +11,15 @@ import AuthProvider from "./contexts/authProvider"
 
 function App() {
 
-  const {token,setToken} = useToken()
-
   return (
 
     <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
-          <Route path="/login" element={<Login setToken={setToken}></Login>}></Route>
-          <Route path="/dashboard" element={<ProtectedRoute token={token}><Dashboard/></ProtectedRoute>}></Route>
-          <Route path="/profile" element={<ProtectedRoute token={token}><Profile/></ProtectedRoute>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/dashboard" element={<ProtectedRoute ><Dashboard/></ProtectedRoute>}></Route>
+          <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
         </Routes>
       
       </BrowserRouter>

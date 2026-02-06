@@ -1,10 +1,16 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
-function Login({setToken}){
+import { useNavigate} from "react-router-dom";
+
+import { AuthContext } from "../contexts/authContext";
+import { useContext } from "react";
+
+function Login(){
 
     const {register,handleSubmit,formState:{errors}} = useForm()
     //const location = useLocation()
     const navigate = useNavigate()
+
+    const {setToken} = useContext(AuthContext)
 
     //const from = location.state?.from?.pathname || "/";
 

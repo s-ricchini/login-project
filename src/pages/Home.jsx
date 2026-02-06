@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../contexts/authContext"
+import Header from "../components/Header"
 
 function Home(){
 
-    const {logOut} = useContext(AuthContext)
+    const {isAuthenticated} = useContext(AuthContext)
+
+    const items = [{title: "Dashboard",path: "/dashboard"},{title: "profile",path: "/profile"}]
 
     return(
-    
         <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={'/dashboard'}>Dashboard</Link>
-                    </li>   
-                    <li>
-                        <Link to={'/profile'}>Profile</Link>
-                    </li>
-
-                    <li>
-                        <Link to={'/login'}>Login</Link>
-                    </li>
-                    
-                </ul>
-            </nav>
-
-            <button className="bg-red-800 text-white hover:cursor-pointer" onClick={() => {
-                logOut()
-                console.log('logOut')
-                console.log(localStorage)
-            }}>LogOut</button>
+            <Header items={items}></Header>
+            <h2>Home</h2>
+            {isAuthenticated? <span className="text-2xl text-green-800">"ESTAS LOGUEADO"</span> : <span className="text-2xl text-red-800">"NO ESTAS LOGUEADO"</span>  }
         </div>
-        
+            
     )
 
 }
