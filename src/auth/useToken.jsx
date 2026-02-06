@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useToken(){
     
     const getToken = () => {
-        const tokenString = localStorage.getItem('token');
+        const tokenString = sessionStorage.getItem('token');
         
         if(!tokenString){
             return null;
@@ -16,11 +16,11 @@ export default function useToken(){
 
     const saveToken = (userToken) => {
         setToken(userToken);
-        localStorage.setItem('token', JSON.stringify(userToken))
+        sessionStorage.setItem('token', JSON.stringify(userToken))
     };
     
     const removeToken = () => {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         setToken(null)
     }
     
