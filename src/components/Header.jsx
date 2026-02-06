@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import { AuthContext } from "../contexts/authContext"
+import BotonLoginOut from "./BotonLogInOut"
 
 /*
     Item list se encarga de renderizar todos los path que va a tener el header,
@@ -14,7 +13,7 @@ function ItemsList({items}){
     })
 
     return(
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
             <ul className="flex gap-4">
                 {liItems}
             </ul>
@@ -24,35 +23,14 @@ function ItemsList({items}){
 }
 
 
-//muestra boton de log in o logOut depoendiendo si el usuario esta autentificado
-function BotonLoginOut(){
-    
-    const {isAuthenticated,logOut} = useContext(AuthContext);
 
-    
-    if(isAuthenticated){
-        return(
-            <button onClick={() => {
-                console.log('logOut')
-                logOut()
-            }}>LogOut</button>
-        )
-    }
-        
-    return(
-        <Link to={'/login'}>
-            <button >LogIn</button>
-        </Link>
-        
-    )
-}
 
 //items = [{title: 'dashboard', path:'/dashboard' }]
 
 function Header({items}){
     return(
         <nav className="bg-blue-800 py-3 px-6">
-            <div className="flex text-white justify-between">
+            <div className="flex text-white justify-between items-center">
                 <h1>App name</h1>
                 <ItemsList items={items}></ItemsList>
             </div>
