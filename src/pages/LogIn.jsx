@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 
 import { AuthContext } from "../contexts/authContext";
 import { useContext } from "react";
@@ -7,13 +7,14 @@ import { useContext } from "react";
 function Login(){
 
     const {register,handleSubmit,formState:{errors}} = useForm()
-    //const location = useLocation()
+    
+    const location = useLocation()
     const navigate = useNavigate()
 
     const {setToken} = useContext(AuthContext)
 
-    //const from = location.state?.from?.pathname || "/";
-
+    const from = location.state?.from?.pathname || "/";
+    console.log(from)
 
     async function loginUser(credentials) {
         return fetch('http://localhost:8080/login',{
@@ -32,7 +33,8 @@ function Login(){
         setToken(UserToken.token);
         
         //vuelvo a la ruta original
-        navigate(`/`)
+        console.log(from)
+        navigate(from)
     }
 
 

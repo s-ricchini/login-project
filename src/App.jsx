@@ -1,5 +1,4 @@
 import { BrowserRouter,Routes,Route} from "react-router-dom"
-import useToken from "./auth/useToken"
 
 import Dashboard from "./pages/Dashboard"
 import Profile from "./pages/Profile"
