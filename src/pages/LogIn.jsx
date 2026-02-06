@@ -4,7 +4,11 @@ import { useNavigate, useLocation} from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
 import { useContext } from "react";
 
+import Header from "../components/Header";
+
 function Login(){
+    const headerItems = [{title:'Home',path:'/'}]
+
 
     const {register,handleSubmit,formState:{errors}} = useForm()
     
@@ -40,20 +44,24 @@ function Login(){
 
 
     return(
-        <div className="bg-white w-9/10 mx-auto md:w-4/10 p-5 space-y-3 rounded-lg my-10">
-            <h2 className="text-black text-xl font-semibold text-center">Login</h2>
-            <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" className="p-1.5 border-2 border-gray-100 rounded-xl" {...register('email', {required: "*this field is required"})} placeholder="Email"></input>
-                {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+        <>  
+            <Header items={headerItems}></Header>
+            <div className="bg-white w-9/10 mx-auto md:w-4/10 p-5 space-y-3 rounded-lg my-10">
+                <h2 className="text-black text-xl font-semibold text-center">Login</h2>
+                <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
+                    <input type="text" className="p-1.5 border-2 border-gray-100 rounded-xl" {...register('email', {required: "*this field is required"})} placeholder="Email"></input>
+                    {errors.email && <p className="text-red-600">{errors.email.message}</p>}
 
-                <input type="password" className="p-1.5 border-2 border-gray-100 rounded-xl" {...register('password', {required: "*this field is required"})} placeholder="Password"></input>
-                {errors.password && <p className="text-red-600">{errors.password.message}</p>}
-                
-                <input type="submit" className="bg-blue-900 text-white py-1.5 rounded-lg hover:bg-blue-950 hover:cursor-pointer active:bg-amber-500" value={'LogIn'}></input>
+                    <input type="password" className="p-1.5 border-2 border-gray-100 rounded-xl" {...register('password', {required: "*this field is required"})} placeholder="Password"></input>
+                    {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+                    
+                    <input type="submit" className="bg-blue-900 text-white py-1.5 rounded-lg hover:bg-blue-950 hover:cursor-pointer active:bg-amber-500" value={'LogIn'}></input>
 
 
-            </form>
-        </div> 
+                </form>
+            </div>
+        </>
+         
     )
 }
 
